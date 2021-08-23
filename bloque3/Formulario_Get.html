@@ -8,23 +8,23 @@
 
 <body>
 		<form action="/localhost/curso-sistemas/index.php"  method="GET">
-			<label>Nombre</label>
+			<label>Nombre:</label>
 			<input type="text" name="nombre"></input>
 			
-			<label>Apellidos</label>
+			<label>Apellidos:</label>
 			<input type="text" name="apellidos"></input>
 			
 			<br></br>
 			
-			<label>Correo Electrónico</label>
-			<input type="email" name="email"></input>
+			<label>Correo Electrónico:</label>
+			<input type="email" name="email" value="@"></input>
 			
 			<br></br>
 			
-			<label>Población</label>
+			<label>Población:</label>
 			<input type="text" name="poblacion"></input>
 			
-			<label>Provincia</label>
+			<label>Provincia:</label>
 			<input type="text" name="provincia"></input>
 			
 			<br></br>
@@ -44,7 +44,44 @@
 			<label>60-100</label>					
 			<br></br>	
 		
+			<br></br>
+			<label>Cómo nos conociste?</label>
+			<br></br>
+			
+			<input type="checkbox" name="Origen1"></input>
+			<label>A través de un amigo.</label>			
+			<br></br>
+			<input type="checkbox" name="Origen2"></input>
+			<label>A través de un buscador.</label>
+			<br></br>			
+			<input type="checkbox" name="Origen3"></input>
+			<label>Navegando por la red.</label>
+			<br></br>	
+			<input type="checkbox" name="Origen4"></input>
+			<label>Otros.</label>					
+			<br></br>	
+			
+			<p>Opinión sobre nuestra página web:</p>
+			<textarea name="mensaje" rows="3" cols="30">Escribe... </textarea>
+			<br></br>
+			
+			<p>Tienes alguna sugerencia...</p>
+			<textarea name="mensaje" rows="3" cols="30">Escribe tus sugerencias...</textarea>
+			<br></br>
+			
 		
+			<label>Cúanto navegas por Internet?(señala la opción más aproximada)</label>
+			<br></br>
+		    
+		  	<select name="tiempo" size="2" multiple>
+			<option value="2_horas">2 horas al día.</option>
+			<option value="4_horas">4 horas al día.</option>
+			<option value="mas">Más tiempo.</option>
+			</select>
+			<br><br>
+			
+			<input type="submit" value="Enviar formulario">
+			<input type="reset" value="Borrar formulario">
 		</form>
 
 </body>

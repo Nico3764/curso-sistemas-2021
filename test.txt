@@ -1,4 +1,0 @@
-hola mundo
-
-
-cat: /var/log/syslog: Permiso denegado
