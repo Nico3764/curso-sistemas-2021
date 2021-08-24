@@ -1,0 +1,22 @@
+Bloque 1/2/3
+============
+
+Edición mediante el inspeccionador: OK
+
+Formulario GET: Muy buen trabajo. Solamente algunos detallecitos de identación de código:
+Ejemplo:
+
+<select name="tiempo" size="2" multiple>
+<option value="2_horas">2 horas al día.</option>
+<option value="4_horas">4 horas al día.</option>
+<option value="mas">Más tiempo.</option>
+</select>
+
+Buen uso de elementos HTML.
+
+Formulario POST: Pendiente
+
+Calculadora: Muy buen trabajo. Buen uso de atributos style
+
+Manejo de GIT: OK. Repositorio limpio.
+
