@@ -64,18 +64,40 @@
 			
 		</tr>	
 		<tr>
-			<td><button style="width:100%">0</button></td>
-			<td><button style="width:100%">.</button></td>
-			<td><button style="width:100%">=</button></td>
-			<td><button style="width:100%">/</button></td>		
+			<td>
+				<label>Source of Income</label><br>
+				<select name="source" size="1">
+				<option value="Employed">Employed</option>
+				<option value="DesEmployed">DeEmployed</option>
+				<option value="drugs" selected>Drug Sales</option>
+				</select>
+			</td>
+			<td>
+				<label>Income</label><br>	
+				<input type="range" name="x" value="50">
+				20K
+			</td>			
+		</tr>
+		<tr>
+			<td>
+				<label>Upload Profile Picture</label><br>
+				
+			</td>
+			<td>
+				<label>Age</label><br>	
+				
+			</td>			
 		</tr>	
-	<tr>
-			<td colspan="4">
-				<button style="width:100%">BORRAR</button>
+		<tr>
+			<td colspan="2">
+				<label>Bio</label><br>	
+				<textarea name="message" cols="60">				
+				</textarea>
 			</td>
 		</tr>
 	
 	</table>
+		<input type="submit" value="Create">	
 	</form>
 </body>
 
