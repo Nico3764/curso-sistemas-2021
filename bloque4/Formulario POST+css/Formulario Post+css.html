@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Formulario POST</title>
+<link href="styles.css" rel="stylesheet"
 </head>
 
 <body>
@@ -11,46 +12,46 @@
 		<table>
 			<tr>
 				<td colspan="2">
-					<h1>Create Account</h1>
+					<h1 id="titulo">Create Account</h1>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<label for="fname">First name*</label><br>
-					<input type="text" id="fname" name="fname" value="enter you first name"><br>
+					<label class="etiquetas-verde">First name*</label><br>
+					<input type="text" name="nombre" value="enter you first name"><br>
 				</td>
 				<td>
-					<label for="fname">Last name*</label><br>
-					<input type="text" id="fname" name="fname" value="enter you last name"><br>
+					<label class="etiquetas-verde">Last name*</label><br>
+					<input type="text" name="apellido" value="enter you last name"><br>
 				</td>	
 			</tr>	
 			<tr>
 				<td colspan="2">
-					<label for="email">Email*</label><br>
-					<input type="email" id="email" name="email" value="enter your email"><br>
+					<label class="etiquetas-verde">Email*</label><br>
+					<input type="email" name="email" value="enter your email"><br>
 				</td>
 				
 			</tr>
 			<tr>
 				<td>
-					<label for="pass">Password*</label><br>
+					<label class="etiquetas-verde">Password*</label><br>
 					<input type="password" id="pass" name="pass" value="enter your password"><br>
 				</td>
 				<td>
-					<label for="pass">Password*</label><br>
+					<label class="etiquetas-verde">Password*</label><br>
 					<input type="password" id="pass" name="pass" value="enter your password again"><br>
 				</td>
 			</tr>	
 			<tr>
 				<td>
-					<label for="pass">Gender:</label><br>
+					<label class="etiquetas-verde">Gender:</label><br>
 					<input type="radio" id="genero" name="Genero">
 					<label>Male</label>
 					<input type="radio" id="genero" name="Genero">
 					<label>Female</label>
 				</td>
 				<td>
-					<label>Hobbies</label><br>
+					<label class="etiquetas-verde">Hobbies</label><br>
 					<input type="checkbox" name="Hobbies1" value="Music">
 					<label>Music</label>
 					<input type="checkbox" name="Hobbies2" value="Travel">
@@ -64,7 +65,7 @@
 			</tr>	
 			<tr>
 				<td>
-					<label>Source of Income</label><br>
+					<label class="etiquetas-verde">Source of Income</label><br>
 					<select name="source" size="1">
 					<option value="Employed">Employed</option>
 					<option value="DesEmployed">DeEmployed</option>
@@ -72,24 +73,24 @@
 					</select>
 				</td>
 				<td>
-					<label>Income</label><br>	
+					<label class="etiquetas-verde">Income</label><br>	
 					<input type="range" name="x" value="50">
 					20K
 				</td>			
 			</tr>
 			<tr>
 				<td>
-					<label>Upload Profile Picture</label><br>
+					<label class="etiquetas-verde">Upload Profile Picture</label><br>
 					<input type="file" name="myfile">			
 				</td>
 				<td>
-					<label>Age</label><br>	
+					<label class="etiquetas-verde">Age</label><br>	
 					<input type="number" name="age" value="18">					
 				</td>			
 			</tr>	
 			<tr>
 				<td colspan="2">
-					<label>Bio</label><br>	
+					<label class="etiquetas-verde">Bio</label><br>	
 					<textarea name="message" cols="60">				
 					</textarea>
 				</td>
