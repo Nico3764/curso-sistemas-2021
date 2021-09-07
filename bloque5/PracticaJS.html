@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Práctica programación JS</title>
+<meta name="generator" content="Geany 1.33" />
+</head>
+
+	<body>
+		<script type="text/javascript">
+			//Sustantivos
+			let lacteos = 89.0;
+			let limpieza = 125.60;
+			let bebidas = 95.23;
+			let pan = 74.3;
+			let fiambres = 314.7;
+			
+			let lacteos_incremento = 15;
+			let limpieza_incremento = 22.5;
+			let bebidas_incremento = 34;
+			let pan_incremento = 27;
+			let fiambres_incremento= 31.7;
+			//Verbos
+			//¿Qué hace?
+			function actualizar( precio_articulo, incremento)
+			{
+				//¿Cómo lo hago?---> Pueden ser muchas opciones, tantas formas como ideas de resolver el problema.
+				let precio_actualizado = precio_articulo * (incremento/100 +1);
+				return precio_actualizado;
+				
+			}
+			//Programa
+			lacteos = actualizar (lacteos, lacteos_incremento);
+			limpieza = actualizar (limpieza, limpieza_incremento);
+			bebidas = actualizar (bebidas, bebidas_incremento);
+			pan = actualizar (pan, pan_incremento);
+			fiambres = actualizar (fiambres, fiambres_incremento);
+			
+			console.log("El precio del pan es:" ); 
+			console.log(pan);
+			console.log("El precio de los lacteos es:" );
+			console.log(lacteos);
+			console.log("El precio de los art. de limpieza es:" );
+			console.log(limpieza);
+			console.log("El precio de las bebidas es:" );
+			console.log(bebidas); 
+			console.log("El precio de los fiambres es:" );
+			console.log(fiambres); 
+			
+		</script>
+	</body>
+
+</html>
