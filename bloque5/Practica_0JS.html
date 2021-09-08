@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="utf-8" />
+<title>Temperatura</title>
+<meta name="generator" content="Geany 1.33" />
+</head>
+
+<body>
+	
+	<script type="text/javascript">
+		//desarrolar un programa que se encargue de: convertir °C a °F
+		let temperatura_celsius;
+		let temperatura_farenheit;
+		
+		//verbos (acciones) -->function
+		function convertir( temperatura_en_celsius )
+		{
+			let resultado_en_farenheit = ( temperatura_en_celsius * 1.8) + 32;
+			return resultado_en_farenheit;			
+		}
+		//Escribir el programa (la ejecución)
+		temperatura_celsius = prompt("Ingrese temp en °C");
+		temperatura_farenheit = null;
+		console.log(temperatura_farenheit);
+		
+		temperatura_farenheit = convertir ( temperatura_celsius );
+		console.log("temperatura_farenheit");
+		console.log(temperatura_farenheit);
+		alert ("La temperatura de " + temperatura_celsius + "°C son " + temperatura_farenheit.toFixed(2) + "°F"); 
+		
+	</script>
+</body>
+
+</html>
