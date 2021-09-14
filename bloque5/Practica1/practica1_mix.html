@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="utf-8" />
-<title>Productos</title>
+<title>Productos_Mix</title>
 <meta name="generator" content="Geany 1.33" />
 </head>
 
@@ -41,13 +41,51 @@
 			}
 		]
 		
-		console.log(lacteos)
-		console.log(lacteos[0])
-		console.log(lacteos[1])
-		console.log(lacteos[2])
-		console.log(lacteos[3])
-		console.log(lacteos[4])
-		console.log(lacteos[0].Porcion)
+		//console.log(lacteos)
+		//console.log(lacteos[0])
+		//console.log(lacteos[1])
+		//console.log(lacteos[2])
+		//console.log(lacteos[3])
+		//console.log(lacteos[4])
+		//console.log(lacteos[0].Porcion)
+		
+		
+		//Función que indentifica al lacteo de mayor cont. de Ca.
+		
+	
+		
+		function identificarLacteoDeMayorContenidoDeCalcio( tabla_de_datos )
+		{
+			  let nombre_del_lacteo = null;
+			  let log_mje=null;
+
+			  let referencia = null;
+			  let i=0;
+			  for ( let i=0 ; i<tabla_de_datos.length ; i++)
+				{
+					log_mje= "Fila nro: " + i;
+					console.log(log_mje);
+					log_mje = tabla_de_datos[i].Contenido_Ca;
+					console.log(log_mje);
+					
+					if (tabla_de_datos[i].Contenido_Ca > referencia)
+					{
+							referencia=tabla_de_datos[i].Contenido_Ca;
+							nombre_del_lacteo=tabla_de_datos[i].Nombre;
+					}
+							
+					log_mje = "Evaluando: " + tabla_de_datos[i].Nombre + " Con Contenido de Ca: " + tabla_de_datos[i].Contenido_Ca;
+					console.log(log_mje);
+							
+				}	
+			  
+			  return nombre_del_lacteo;
+			  
+		}
+		
+		console.log(identificarLacteoDeMayorContenidoDeCalcio( lacteos ));
+
+		
 		
 		
 	</script>

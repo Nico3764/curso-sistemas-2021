@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="utf-8" />
-<title>Productos</title>
+<title>Productos_Array</title>
 <meta name="generator" content="Geany 1.33" />
 </head>
 
@@ -12,7 +12,13 @@
 	
 	<script type="text/javascript">
 		//Planteo de tabla con arrays
-		let lacteos = [ ["leche" , 200 , 280] , ["Yogurt bebible" , 200 , 180] , ["Yogurt firme" , 190 , 203] , ["Postre" , 125 , 143 ] , ["Queso rallado" , 8 , 104]];
+		let lacteos = 
+		[ 
+			["leche" , 200 , 280] , 
+			["Yogurt bebible" , 200 , 180] , 
+			["Yogurt firme" , 190 , 203] , ["Postre" , 125 , 143 ] , 
+			["Queso rallado" , 8 , 304]
+		];
 		
 		console.log(lacteos)
 		console.log(lacteos[0])
@@ -20,6 +26,38 @@
 		console.log(lacteos[2])
 		console.log(lacteos[3])
 		console.log(lacteos[4])
+		
+		//Función que indentifica al lacteo de mayor cont. de Ca.
+		
+	
+		
+		function identificarLacteoDeMayorContenidoDeCalcio( tabla_de_datos )
+		{
+			  let nombre_del_lacteo = null;
+			  let log_mje=null;
+
+			  let referencia = null;
+			  for ( let numerofila=0 ; numerofila<tabla_de_datos.length ; numerofila++)
+				{
+					if (tabla_de_datos [numerofila] [2] > referencia)
+					{
+							referencia=tabla_de_datos[numerofila] [2];
+							nombre_del_lacteo=tabla_de_datos[numerofila] [0];
+					}
+					//log_mje = "lacteo: " + nombre_del_lacteo;
+					//console.log(log_mje);
+					//log_mje = "Referencia actual: " + referencia
+					//console.log(log_mje);
+					//log_mje = "Numero de fila actual: " + numerofila;
+					//console.log(log_mje);
+				}	
+			  
+			  return nombre_del_lacteo;
+			  
+		}
+		
+		console.log(identificarLacteoDeMayorContenidoDeCalcio( lacteos ));
+
 		
 		
 	</script>
