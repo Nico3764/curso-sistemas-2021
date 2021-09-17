@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Problema A</title>
+<meta name="generator" content="Geany 1.33" />
+</head>
+
+<body>
+	<script type="text/javascript">
+		//Declaración de variables globales:
+
+		let n = prompt("Ingrese la cantidad de números impares a generar");
+		console.log(typeof(n));
+		n= Math.floor(n); //Convierte a n en number
+		console.log(typeof(n));
+		
+		
+		//Functions
+		function GeneraImpar ( cant_nros )
+		{
+			//Declaración de variables locales:
+			let Impares = [];
+			for (let i=0 ; i<cant_nros ; i++)
+			{
+				Impares[i] = Math.floor((Math.random() * cant_nros) + 1); //Genera un nro alearorio entre 1 y cant_nros
+				console.log('El valor del nro aleatorio es: ' + Impares[i] + ' de tipo ' + typeof(Impares[i]));
+				if ( Number.isSafeInteger(Impares[i] / 2)) //Si el nro aleatorio generado es par, le resta 1
+				{				
+					Impares[i] = Impares[i] - 1;
+				}	
+				console.log('El valor del nro impar es: ' + Impares[i]);	
+			}
+		return Impares;
+			
+		}
+		//alert (GeneraImpar (n) ); 
+		console.log('El valor de los nros impares: ' + GeneraImpar (n));
+		
+	</script>
+
+</body>
+
+</html>
