@@ -16,15 +16,19 @@
 		console.log(typeof(n));
 		
 		
-		//Functions
-		function GeneraImpar ( cant_nros )
+		//Funciones:
+		
+		function GeneraImpar ( cant_nros ) //La función devuelve un array con 'cant_nros' de numeros impares entre 1 y 'cant_nros'.
 		{
 			//Declaración de variables locales:
 			let Impares = [];
+			
 			for (let i=0 ; i<cant_nros ; i++)
 			{
 				Impares[i] = Math.floor((Math.random() * cant_nros) + 1); //Genera un nro alearorio entre 1 y cant_nros
+				
 				console.log('El valor del nro aleatorio es: ' + Impares[i] + ' de tipo ' + typeof(Impares[i]));
+				
 				if ( Number.isSafeInteger(Impares[i] / 2)) //Si el nro aleatorio generado es par, le resta 1
 				{				
 					Impares[i] = Impares[i] - 1;
@@ -34,6 +38,7 @@
 		return Impares;
 			
 		}
+		
 		//alert (GeneraImpar (n) ); 
 		console.log('El valor de los nros impares: ' + GeneraImpar (n));
 		
