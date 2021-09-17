@@ -1,0 +1,89 @@
+#display
+{
+	color: black;
+	font-family: arial;
+	font-weight: normal;
+	font-size: 25px; 
+	text-align: right;
+	
+	background-color: white;
+	box-shadow: 2px 2px   #878886;
+	width: 150px;
+	height: 30px;
+	
+	border-radius: 6px;
+	border-color:  #878886;
+}
+
+.boton-azul
+{
+	color: white;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 100%; 
+	
+	background-color: blue;
+	box-shadow: 2px 2px  #03124e;
+	width: 28px;
+	height: 30px;
+	
+	border-radius: 6px;
+	border-color: #03124e;
+	
+	
+}
+.boton-igual
+{
+	color: white;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 100%; 
+	
+	background-color: yellow;
+	box-shadow: 2px 2px #405203;
+	width: 28px;
+	height: 30px;
+	
+	border-radius: 6px;
+	border-color: #405203 ;
+	
+	
+}
+
+.boton-rojo
+{
+	color: white;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 100%; 
+	
+	background-color: red;
+	box-shadow: 2px 2px #405203;
+	width: 95%;
+	height: 30px;
+	
+	border-radius: 6px;
+	border-color: #5D0101;
+	
+	
+}
+
+.boton-verde
+{
+	color:white;
+	font-family:arial;
+	font-weight:bold;
+	font-size:80%; 
+	
+	background-color:  #51e914 ;
+	box-shadow: 2px 2px  #227301;
+	width: 28px;
+	height: 30px;
+	
+	border-radius: 6px;
+	border-color:  #227301;	
+	
+}
+
+
+
