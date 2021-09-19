@@ -6,19 +6,81 @@
 <meta name="generator" content="Geany 1.33" />
 </head>
 
-<body>
+<body></body>
 	<script type="text/javascript">
 		//Declaración de variables globales:
+		//Mje = [ id , emisor, receptor , cuerpo , fecha , estado ]
+		//Mje = [ numbrer , string , string , string , number , boolean ]
+		let mensajes_guardados = [];
+		
+		
+		//Funciones:
+		
+		function GeneraMje () //La función devuelve un array con el Mje.
+		{
+			//Declaración de variables locales:
+			let mje = [];
+			//Ejecución de la función:
+			
+			mje [0] = 0;
+			mje [1] = "emisor";
+			mje [2] = "receptor";
+			mje [3] = prompt("Ingrese el mje a enviar");
+			mje [4] = new Date ();
+			mje [5] = false;
+			//console.log(typeof(mje));
+			//for (i=0 ; i<mje.length ; i++)
+			//{
+			//	console.log(mje[i] + '------VALOR DE i: ' + i);
+			//}
+		//console.log (mje);
+		return mje;
+			
+		}		
 	
-		let text = "Mar del Plata es una ciudad ubicada en el sudeste de la provincia de Buenos Aires, Argentina, sobre la costa del mar argentino. Es la cabecera del partido de General Pueyrredón, un importante puerto y balneario y la segunda urbe de turismo más importante del país tras Buenos Aires, ya que en época de verano su población puede aumentar en alrededor de un 300 %, por lo que cuenta con una gran oferta de infraestructura de hoteles. La autovía 2 la enlaza tras 404 km con Buenos Aires y está ubicada a 365 km de La Plata. Fue fundada con su nombre actual el 10 de febrero de 1874 por Patricio Peralta Ramos, en una estancia de su propiedad, sobre la base de la segunda de las tres extintas misiones jesuitas de la Pampa, fundadas en la segunda mitad del siglo XVIII, denominada Nuestra Señora del Pilar de Puelches, que más tarde recibió el nombre de «Puerto de la Laguna de los Padres». Las principales industrias son la pesquera, la turística y la textil. La pesca, actividad principal del puerto, se complementa también con barcos petroleros y cerealeros. La ciudad cuenta también con una base naval de submarinos. Entre la gran variedad de industrias, se destacan también las derivadas de la horticultura, la construcción, la metalúrgica y la mecánica. La ciudad cuenta con un complejo deportivo que fue subsede del Mundial de Fútbol 1978,2​sede de los Juegos Panamericanos de 1995 y donde se jugó la final de la Copa Davis 2008. El Club Atlético Aldosivi y el Club Atlético Alvarado son los equipos de fútbol más populares que representan a la ciudad. Además, es conocida por su calidad en el básquetbol, donde el Club Atlético Peñarol y el Club Atlético Quilmes representan a este deporte a nivel nacional."
-
-	
-	
-	
-	
-	
-	
+		function GuardaMje ( mensajes_guardados , mensaje_nuevo) //La función devuelve un array con el mensaje_nuevo y el correspondiente id.
+		{
+			//Declaración de variables locales:
+			
+			let mensajes_actual = mensajes_guardados;
+			//Ejecución de la función:
+			
+			mensaje_nuevo[0] = mensajes_guardados.length;
+			mensajes_actual [mensajes_guardados.length] = mensaje_nuevo;
+			for (i=0 ; i<mensajes_actual.length ; i++)
+			{
+				console.log(mensajes_actual[i] + '------VALOR DE i: ' + i);
+			}
+			
+		return mensajes_actual;
+		}
+		
+		function BuscaMje ( mensajes_guardados , parametro_de_busqueda, valor_busqueda) //La función devuelve un array con el mensaje_buscado según el parametro_de_busqueda y valor_de_busqueda.
+		{
+			//Declaración de variables locales:
+			
+			let mensaje_buscado = [];
+			j=0;
+			//Ejecución de la función:
+			if (parametro_de_busqueda == "receptor") { j=2;}
+			if (parametro_de_busqueda == "emisor")   { j=1;}
+			for (i=0 ; i<mensajes_guardados.length ; i++)
+			{
+				if (mensajes_guardados[i] [j] == valor_busqueda)
+				{
+					mensaje_buscado = mensajes_guardados[i];
+					console.log(mensaje_buscado + '------VALOR DE BUSQUEDA: ' + valor_busqueda);
+					
+				}
+			}
+		}
+		//mensajes_guardados = GeneraMje(); 
+		mensajes_guardados = GuardaMje( mensajes_guardados , GeneraMje() );
+		mensajes_guardados = GuardaMje( mensajes_guardados , GeneraMje() );
+		mensajes_guardados = GuardaMje( mensajes_guardados , GeneraMje() );
+		BuscaMje ( mensajes_guardados , "receptor" , "receptor")
 	</script>
-</body>
+
+
 
 </html>
