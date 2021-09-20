@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>CALCULADORA</title>
+
+<link href="styles.css" rel="stylesheet"
+</head>
+
+
+<body>
+	<table>
+		<tr>
+			<td colspan="4">
+				<input type="text" id="display" value=""></input>
+			</td>
+		</tr>
+		<tr>
+			<td><button id="button7" class="boton-azul">7</button></td>
+			<td><button id="button8" class="boton-azul">8</button></td>
+			<td><button id="button9" class="boton-azul">9</button></td>
+			<td><button id="button_plus" class="boton-verde">+</button></td>		
+		</tr>	
+		<tr>
+			<td><button id="button4" class="boton-azul">4</button></td>
+			<td><button id="button5" class="boton-azul">5</button></td>
+			<td><button id="button6" class="boton-azul">6</button></td>
+			<td><button id="button_minus" class="boton-verde">-</button></td>		
+		</tr>	
+		<tr>
+			<td><button id="button1" class="boton-azul">1</button></td>
+			<td><button id="button2" class="boton-azul">2</button></td>
+			<td><button id="button3" class="boton-azul">3</button></td>
+			<td><button id="button_multiply" class="boton-verde">*</button></td>		
+		</tr>	
+		<tr>
+			<td><button id="button0" class="boton-azul">0</button></td>
+			<td><button id="button_dot" class="boton-azul">.</button></td>
+			<td><button id="button_equal" class="boton-igual">=</button></td>
+			<td><button id="button_division" class="boton-verde">/</button></td>		
+		</tr>	
+	<tr>
+			<td colspan="4">
+				<button id="button_clear"class="boton-rojo">BORRAR</button>
+			</td>
+		</tr>
+	
+	</table>
+</body>
+
+	<script type="text/javascript">
+		
+	let on_click_button9 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '9';
+	}
+	let button9 = document.getElementById("button9");
+	button9.addEventListener("click" , on_click_button9 );
+	
+	let on_click_button8 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '8';
+	}
+	let button8 = document.getElementById("button8");
+	button8.addEventListener("click" , on_click_button8 );
+	
+	let on_click_button7 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '7';
+	}
+	let button7 = document.getElementById("button7");
+	button7.addEventListener("click" , on_click_button7 );
+	
+	let on_click_button6 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '6';
+	}
+	let button6 = document.getElementById("button6");
+	button6.addEventListener("click" , on_click_button6 );
+	 
+	let on_click_button5 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '5';
+	}
+	let button5 = document.getElementById("button5");
+	button5.addEventListener("click" , on_click_button5 );
+	
+	let on_click_button4 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '4';
+	}
+	let button4 = document.getElementById("button4");
+	button4.addEventListener("click" , on_click_button4 );  
+	
+	let on_click_button3 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '3';
+	}
+	let button3 = document.getElementById("button3");
+	button3.addEventListener("click" , on_click_button3 );  
+	
+	let on_click_button2 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '2';
+	}
+	let button2 = document.getElementById("button2");
+	button2.addEventListener("click" , on_click_button2 );  
+	
+	let on_click_button1 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '1';
+	}
+	let button1 = document.getElementById("button1");
+	button1.addEventListener("click" , on_click_button1 );  
+	
+	let on_click_button0 = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '0';
+	}
+	let button0 = document.getElementById("button0");
+	button0.addEventListener("click" , on_click_button0 );  
+	
+	
+	let on_click_button_dot = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '.';
+	}
+	let button_dot = document.getElementById("button_dot");
+	button_dot.addEventListener("click" , on_click_button_dot );  
+	
+	
+	let on_click_button_plus = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '+';
+	}
+	let button_plus = document.getElementById("button_plus");
+	button_plus.addEventListener("click" , on_click_button_plus ); 
+	
+	
+	let on_click_button_minus = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '-';
+	}
+	let button_minus = document.getElementById("button_minus");
+	button_minus.addEventListener("click" , on_click_button_minus ); 
+	
+	
+	let on_click_button_multiply = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += 'x';
+	}
+	let button_multiply = document.getElementById("button_multiply");
+	button_multiply.addEventListener("click" , on_click_button_multiply); 
+	
+	let on_click_button_division = event =>
+	{
+		let display = document.getElementById("display");
+		display.value += '/';
+	}
+	let button_division = document.getElementById("button_division");
+	button_division.addEventListener("click" , on_click_button_division);
+	
+	 
+	let on_click_button_clear = event =>
+	{
+		let display = document.getElementById("display");
+		display.value = '';
+	}
+	let button_clear = document.getElementById("button_clear");
+	button_clear.addEventListener("click" , on_click_button_clear);
+	
+	
+	let on_click_button_equal = event =>
+	{
+		let display = document.getElementById("display");
+			
+		if ( display.value.indexOf("+") != -1 )
+		{			
+			let display_value = display.value.split("+");
+			let suma = 0;
+			console.log('entró al if+______' + display_value);
+			for (i=0 ; i<display_value.length ; i++)
+			{
+				suma = suma + Number(display_value[i]);
+			}
+			console.log('La suma es: ' + suma);
+			display.value = suma;
+		} else {
+			if ( display.value.indexOf("-") != -1 )
+			{				
+				let display_value = display.value.split("-");
+				let resta = Number(display_value[0]);
+				console.log('entró al if-_____' + display_value);
+				for (i=1 ; i<display_value.length ; i++)
+				{
+					resta = resta - Number(display_value[i]);
+				}
+				console.log('La resta es: ' + resta);
+				display.value = resta;
+			}	
+		}
+			
+	}
+	let button_equal = document.getElementById("button_equal");
+	button_equal.addEventListener("click" , on_click_button_equal);
+	
+	</script>
+
+</html>
