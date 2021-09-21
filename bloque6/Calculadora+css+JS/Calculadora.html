@@ -185,35 +185,97 @@
 	button_clear.addEventListener("click" , on_click_button_clear);
 	
 	
+	let add = ( number_to_add ) =>
+	{
+		let suma = 0;
+		for (i=0 ; i<number_to_add.length ; i++)
+			{
+				if (Number(number_to_add[i]) != 'NaN')
+				{
+					suma = suma + Number(number_to_add[i]);
+				}
+			}
+		console.log('entro a la function suma y la suma es: ' + suma + typeof(suma));
+		return suma;		
+	}
+	
+	let subtraction = ( number_to_subtraction ) =>
+	{
+		let subt = Number(number_to_subtraction[0]);
+		for (i=1 ; i<number_to_subtraction.length ; i++)
+			{
+				if (Number(number_to_subtraction[i]) != 'NaN')
+				{
+					subt = subt - Number(number_to_subtraction[i]);
+				}
+			}
+		console.log('entro a la function resta y la resta es: ' + subt + ' del tipo: ' + typeof(subt));
+		return subt;		
+	}
+	
+	
+	let multiply = ( number_to_multiply ) =>
+	{
+		let mult = Number(number_to_multiply[0]);
+		for (i=1 ; i<number_to_multiply.length ; i++)
+			{
+				if (Number(number_to_multiply[i]) != 'NaN')
+				{
+					mult = mult * Number(number_to_multiply[i]);
+				}
+			}
+		console.log('entro a la function multiply y la multiplicación es: ' + mult + ' del tipo: ' + typeof(mult));
+		return mult;		
+	}
+	
+	
+	let divide = ( number_to_divide ) =>
+	{
+		let div = Number(number_to_divide[0]);
+		for (i=1 ; i<number_to_divide.length ; i++)
+			{
+				if (Number(number_to_divide[i]) != 'NaN')
+				{
+					div = div / Number(number_to_divide[i]);
+				}
+			}
+		console.log('entro a la function divide y la división es: ' + div + ' del tipo: ' + typeof(div));
+		return div;		
+	}
+	
 	let on_click_button_equal = event =>
 	{
 		let display = document.getElementById("display");
 			
 		if ( display.value.indexOf("+") != -1 )
 		{			
-			let display_value = display.value.split("+");
-			let suma = 0;
-			console.log('entró al if+______' + display_value);
-			for (i=0 ; i<display_value.length ; i++)
-			{
-				suma = suma + Number(display_value[i]);
-			}
-			console.log('La suma es: ' + suma);
+			let display_value = display.value.split("+");		
+			let suma = add (display_value);
+			console.log('entró al if+______' + display_value);			
 			display.value = suma;
-		} else {
-			if ( display.value.indexOf("-") != -1 )
-			{				
-				let display_value = display.value.split("-");
-				let resta = Number(display_value[0]);
-				console.log('entró al if-_____' + display_value);
-				for (i=1 ; i<display_value.length ; i++)
-				{
-					resta = resta - Number(display_value[i]);
-				}
-				console.log('La resta es: ' + resta);
-				display.value = resta;
-			}	
 		}
+		if ( display.value.indexOf("-") != -1 )
+		{				
+			let display_value = display.value.split("-");
+			let resta = subtraction ( display_value );
+			console.log('entró al if-_____' + display_value);
+			display.value = resta;
+		}	
+		if ( display.value.indexOf("x") != -1 )
+		{				
+			let display_value = display.value.split("x");
+			let multip = multiply ( display_value );
+			console.log('entró al ifx_____' + display_value);
+			display.value = multip;
+		}	
+		if ( display.value.indexOf("/") != -1 )
+		{				
+			let display_value = display.value.split("/");
+			let div = divide ( display_value );
+			console.log('entró al if/_____' + display_value);
+			display.value = div;
+		}	
+		
 			
 	}
 	let button_equal = document.getElementById("button_equal");
