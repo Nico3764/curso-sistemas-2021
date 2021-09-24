@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Meteorologia</title>
+<meta name="generator" content="Geany 1.33" />
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="gui"></body>
+
+	<script type="text/javascript">
+	let title = "La siguiente Tabla muestra los parámetros climáticos de Mar del Plata";
+	let title_table = "Parámetros climáticos promedio de Mar del Plata, BA (1961-1990).";	
+	let table =
+		{
+			Mes:[ "Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic.", "Anual"],
+			Temp_max_abs: [39.3, 38.1, 36.3, 32.5, 27.4, 22.2, 27.7, 24.7, 28.8, 34.4, 35.7, 39.4, 39.4],
+			Temp_max_media: [26.3, 25.8, 23.7, 20.5, 16.8, 13.8, 13.1, 14.4, 16, 18.5, 21.7, 24.4, 19.6],
+			Temp_media: [20.3, 19.9, 18.0 , 14.6, 11.3, 8.5, 8.1, 8.9, 10.5, 13.1, 15.9, 18.5, 14.0],
+			Temp_min_media: [14.3, 14.1, 12.5, 9.1, 6.4, 4.1, 3.8, 4.0, 5.3, 7.6, 10.1, 12.7, 8.7],
+			Temp_min_abs: [4.7, 1.2, 1.9, -1, -3, -5.5, -9.3, -6.4, -5.5, -3, -2, -0.2,-9.3],
+			Precipitación_total: [100.1, 72.8, 107.0, 73.3, 73.5, 54.9, 58.9, 64.0, 56.4, 83.4, 75.3, 104.0, 923.6],
+			Días_de_precipitaciones: [9, 8, 9, 9, 9, 9, 9, 8, 7, 10, 10, 10, 107],
+			Horas_de_sol: [288.3, 234.5, 232.5, 195.0, 167.4, 120.0, 127.1, 164.3, 174.0, 210.8, 222.0, 269.7, 2405.6],
+			Tumedad_relativa: [76, 77, 79, 81, 83, 84, 81, 81, 80, 80, 77, 76, 80]
+		}
+
+	let generateHTMLCode = ( title, title_table, table ) =>
+	{
+		let HTMLCode = `<h2>${title}</h2>`
+		HTMLCode +=	`<table>`
+		HTMLCode +=	`<tr >
+						<td colspan="${table.Mes.length + 1}">${title_table}</td>
+					 </tr>`
+							
+			for ( let i in table )
+			{
+					HTMLCode += `<tr>`;
+					HTMLCode += `<td>${i}</td>`;
+					for (let j=0; j<table[i].length; j++)
+					{
+						HTMLCode += `<td>${table[i] [j]} </td>`;
+					}				
+					HTMLCode += `</tr>`	;									
+			}						
+							
+		HTMLCode +=	`</table>`;
+		return HTMLCode;			
+	}
+	let body = document.getElementById("gui");
+	body.innerHTML = generateHTMLCode( title, title_table , table );
+	
+	
+	</script>	
+
+</html>
