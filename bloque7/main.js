@@ -138,3 +138,27 @@ let title = "La siguiente Tabla muestra los parámetros climáticos de Mar del P
 	body.innerHTML = generateHTMLCode( title, title_table , table );
 	
 	
+//Peticiones al servidor: API XMLhttpRequest
+
+let procesarRespuestaDelServer = (event) =>
+{
+
+
+}
+
+let PeticionPorXMLhttpRequest = (event) =>
+{
+	let connection = new XMLHttpRequest();
+
+	connection.open('GET', 'server.php');
+
+	connection.addEventListener('loadend', procesarRespuestaDelServer);
+
+	connection.send();
+}
+
+let botonDeCarga = document.getElementById('loadTable');
+botonDeCarga.addEventListener('click', PeticionPorXMLhttpRequest);
+
+
+
