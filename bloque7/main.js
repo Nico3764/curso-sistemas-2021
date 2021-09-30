@@ -79,10 +79,10 @@ let title = "La siguiente Tabla muestra los parámetros climáticos de Mar del P
 		let hum = 0;
 		if (word[0] == 'Temp.' && typeof(value) == "number")
 		{
-			console.log ('el valor de word es: ' + word[0] + ', El valor de value es: '+ value);
-			console.log ('--------------------');
-			console.log ('el valor de La clase es: ' + getClassForTemp(value));
-			console.log ('--------------------');
+			//console.log ('el valor de word es: ' + word[0] + ', El valor de value es: '+ value);
+			//console.log ('--------------------');
+			//console.log ('el valor de La clase es: ' + getClassForTemp(value));
+			//console.log ('--------------------');
 			class_name = getClassForTemp(value);
 		}
 		else if (word[0] == 'Precipitación' && typeof(value) == "number")
@@ -154,12 +154,14 @@ let procesarRespuestaDelServer = (event) =>
 
 let PeticionPorXMLhttpRequest = (event) =>
 {
-	let connection = new XMLHttpRequest();
+	let connection = new XMLHttpRequest(); //Crea el Objeto connetcion que va a ser utilizado para la petición al server
 
-	connection.open('GET', 'server.php');
+	connection.open('GET', 'server.php');//Establece la conexión por el método GET/POST y solicita el recurso server.php
 
-	connection.addEventListener('loadend', procesarRespuestaDelServer);
+	console.log('El valor de connetion es: '+ connection);
+	connection.addEventListener('loadend', procesarRespuestaDelServer);//Cuando el estado de conexión pasa a loadendd ejecuta la función procesarRespuestaDelServer 
 
+	
 	connection.send();
 }
 
