@@ -134,15 +134,21 @@ let title = "La siguiente Tabla muestra los parámetros climáticos de Mar del P
 		HTMLCode += `</div>`;
 		return HTMLCode;			
 	}
-	let body = document.getElementById("gui");
-	body.innerHTML = generateHTMLCode( title, title_table , table );
+	
 	
 	
 //Peticiones al servidor: API XMLhttpRequest
 
 let procesarRespuestaDelServer = (event) =>
 {
+	if (event.currentTarget.status == 200)
+	{
+		let serverRespose = event.currentTarget.responseText;
+		alert ('solicitud satisfactoria');
+		let body = document.getElementById("gui");
+		body.innerHTML = generateHTMLCode( title, title_table , table );
 
+	}
 
 }
 
