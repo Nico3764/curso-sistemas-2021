@@ -2,7 +2,8 @@ let generateHTMLCode = ( response ) =>
 {
 	let HTMLCode = "";
 	let j= 0;
-		for (let i=0; i<8; i++)
+	console.log(response.length)
+		for (let i=0; i<(response.length - 1); i++)
 		{
 			if (response [i].casa.nombre === "Dolar Soja" || response [i].casa.nombre === "Bitcoin") { continue; }
 			
@@ -18,9 +19,6 @@ let generateHTMLCode = ( response ) =>
 		return HTMLCode;			
 }
 
-
-
-
 //Peticiones al servidor: API XMLhttpRequest
 
 let procesarRespuestaDelServer = (event) =>
@@ -29,7 +27,6 @@ let procesarRespuestaDelServer = (event) =>
 	{
 		let serverRespose = event.currentTarget.responseText;
 		
-
 		console.log('La respuesta del servidor es: '+ serverRespose);
 		let inbody = document.getElementById("table");
 		inbody.innerHTML = generateHTMLCode( JSON.parse(serverRespose) );
@@ -43,10 +40,8 @@ let PeticionPorXMLhttpRequest = (event) =>
 
 	connection.open('GET', 'https://www.dolarsi.com/api/api.php?type=valoresprincipales');//Establece la conexión por el método GET/POST y solicita el recurso server.php
 
-	
 	connection.addEventListener('loadend', procesarRespuestaDelServer);//Cuando el estado de conexión pasa a loadendd ejecuta la función procesarRespuestaDelServer 
 
-	
 	connection.send();
 }
 
