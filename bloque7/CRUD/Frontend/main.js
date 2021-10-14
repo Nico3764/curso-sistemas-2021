@@ -1,10 +1,11 @@
 let NewUserFormDataJSON= '';
 let DelUserFormDataJSON= '';
+let EtitUserFormDataJSON= '';
 
 
 let showUserTable = ( userTable ) =>
 {
-    let HTMLCode = `<table>`
+    let HTMLCode = `<table class ="w3-table-all w3-centered" style='width:40%'>`
 
     for ( let i=0; i<userTable.length; i++)
     {
@@ -22,10 +23,10 @@ let showUserTable = ( userTable ) =>
         else
         {
             HTMLCode += `<td>
-                        <button id="EditUserButton-${i}" class="w3-button w3-dark-grey">
+                        <button id="EditUserButton-${i}" class="w3-button w3-amber w3-round-large">
                             EDIT
                         </button>
-                        <button id="DelUserButton-${i}" class="w3-button w3-light-grey">
+                        <button id="DelUserButton-${i}" class="w3-button w3-2021-mint w3-round-large">
                             DELETE
                         </button>
                     </td>`;
@@ -35,15 +36,50 @@ let showUserTable = ( userTable ) =>
     }                       
                         
     HTMLCode += `</table>`;
-    HTMLCode += `<button id="NewUserButton" class="w3-button w3-dark-grey">
+    HTMLCode += `<button id="NewUserButton" class="w3-button w3-2020-flame-scarlet w3-round-large w3-margin-top w3-margin-left">
                     NEW
                 </button>`;
     return HTMLCode;
 }
 
+let EditUserRequest = (event) =>
+{
+    let connection = new XMLHttpRequest();
+
+    connection.open('POST', '../Backend/user/edit.php');    
+    connection.addEventListener('loadend', processUsersResponse );
+    connection.send(EtitUserFormDataJSON);
+
+}
+
 let onEditUserButtonClick = (event) =>
 {
-    alert('Iniciando ediciÃ³n del usuario...');
+    id=[];
+    console.log('Iniciando edición del usuario...'+ event.currentTarget.id);
+    id = event.currentTarget.id.split("-");
+    
+    //id [1]=Math.floor(id[1]); En caso de tener que pasarlo como number
+    //console.log (typeof(id[1]));
+
+    document.getElementById('EditUserModal').style.display='block';
+    let CloseEditUserModal = (event) =>
+    {
+        document.getElementById('EditUserModal').style.display='none';
+    }
+    let SendEditUser = (event) =>
+    {    
+        let EditUserFormData ={};
+        EditUserFormData.id = id[1];
+        EditUserFormData.username = document.getElementById('useredit').value;
+        EditUserFormData.password = document.getElementById('passedit').value;
+     
+        EtitUserFormDataJSON = JSON.stringify(EditUserFormData);
+        console.log(EtitUserFormDataJSON);
+        EditUserRequest();
+        CloseEditUserModal();
+    }
+    document.getElementById('EditUserModalExit').addEventListener('click', CloseEditUserModal );
+    document.getElementById('EditUserSend').addEventListener('click', SendEditUser);
 }
 
 let DeleteUserRequest = (event) =>
@@ -93,11 +129,11 @@ let CreateUserRequest = (event) =>
     connection.open('POST', '../Backend/user/new.php');    
     connection.addEventListener('loadend', processUsersResponse );
     connection.send(NewUserFormDataJSON);
-
 }
 
 let onNewUserButtonClick = (event) =>
 {
+    console.log('Creando usuario...' + event.currentTarget.id);
     document.getElementById('NewUserModal').style.display='block';
     let CloseNewUserModal = (event) =>
     {

@@ -8,7 +8,8 @@ $response =
     [3, "lorena", "******"],
     [4, "ariel", "aka8932j"],
     [5, "florencia", "jhsqnf6"],
-    [6, "nicolas", "99os9si"]
+    [6, "nicolas", "99os9si"],
+    [7, "edit", "123454321"]
 ];
 
 echo json_encode($response);
