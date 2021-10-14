@@ -1,28 +1,32 @@
+let NewUserFormDataJSON= '';
+let DelUserFormDataJSON= '';
+
+
 let showUserTable = ( userTable ) =>
 {
     let HTMLCode = `<table>`
 
-    for ( let row=0; row<userTable.length; row++)
+    for ( let i=0; i<userTable.length; i++)
     {
         HTMLCode += `<tr>`;
 
-        for (let column=0; column<userTable[row].length; column++)
+        for (let j=0; j<userTable[i].length; j++)
         {
-            HTMLCode += `<td>${userTable[row][column]}</td>`;
+            HTMLCode += `<td>${userTable[i][j]}</td>`;
         }
 
-        if ( row == 0 )
+        if ( i == 0 )
         {
-            HTMLCode += `<td>actions</td>`;
+            HTMLCode += `<td class='w3-center'>ACTIONS</td>`;
         }
         else
         {
             HTMLCode += `<td>
-                        <button onclick="document.getElementById('editUser-${userTable[row][0]}').style.display='block'" class="w3-button w3-dark-grey">
-                            Editar
+                        <button id="EditUserButton-${i}" class="w3-button w3-dark-grey">
+                            EDIT
                         </button>
-                        <button onclick="document.getElementById('deleteUser-${userTable[row][0]}').style.display='block'" class="w3-button w3-light-grey">
-                            Borrar
+                        <button id="DelUserButton-${i}" class="w3-button w3-light-grey">
+                            DELETE
                         </button>
                     </td>`;
         }
@@ -31,45 +35,9 @@ let showUserTable = ( userTable ) =>
     }                       
                         
     HTMLCode += `</table>`;
-    HTMLCode += `<button>new</button>`;
-    for ( let row=0; row<userTable.length; row++)
-    {
-    HTMLCode +=`<div id='editUser-${userTable[row][0]}' class="w3-modal">
-                    <div class="w3-modal-content w3-padding-32 w3-dark-grey">
-                        <div class="w3-container">
-                            <span onclick="document.getElementById('editUser-${userTable[row][0]}').style.display='none'"class="w3-button w3-dark-grey w3-padding-small w3-display-topright">&times;
-                            </span>                            
-                                <form class="w3-container w3-card-4 w3-light-grey" action="/action_page.php" method="GET">
-                                <h2 class="w3-center" style='font-weight: bold'>EDITAR USUARIO</h2>
-                                <label>Name*</label><br>
-                                <input class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter new name"><br>
-                                <label>Password*</label><br>
-                                <input class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter new password"><br>
-                                <input class='w3-margin-bottom' type="submit" value="Edit">	
-                               </form>                           
-                            </div>
-                     </div>
-                </div>`
-    }
-    for ( let row=0; row<userTable.length; row++)
-    {
-    HTMLCode +=` <div id='deleteUser-${userTable[row][0]}' class="w3-modal">
-                    <div class="w3-modal-content w3-padding-32 w3-dark-grey">
-                        <div class="w3-container">
-                            <span onclick="document.getElementById('deleteUser-${userTable[row][0]}').style.display='none'"class="w3-button w3-dark-grey w3-padding-small w3-display-topright">&times;
-                            </span>                            
-                                <form class="w3-container w3-card-4 w3-light-grey" action="/action_page.php" method="GET">
-                                <h2 class="w3-center" style='font-weight: bold'>BORRAR USER</h2>
-                                <label>Nombre o id de Usuario</label><br>
-                                <input class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter name or id"><br>
-                                <label>Password*</label><br>
-                                <input class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter new password"><br>
-                                <input class='w3-margin-bottom' type="submit" value="DELETE"> 
-                               </form>                           
-                            </div>
-                     </div>
-                </div>`
-    }
+    HTMLCode += `<button id="NewUserButton" class="w3-button w3-dark-grey">
+                    NEW
+                </button>`;
     return HTMLCode;
 }
 
@@ -78,28 +46,98 @@ let onEditUserButtonClick = (event) =>
     alert('Iniciando ediciÃ³n del usuario...');
 }
 
+let DeleteUserRequest = (event) =>
+{
+    let connection = new XMLHttpRequest();
+
+    connection.open('POST', '../Backend/user/delete.php');    
+    connection.addEventListener('loadend', processUsersResponse );
+    connection.send(DelUserFormDataJSON);
+
+}
+
 let onDeleteUserButtonClick = (event) =>
 {
-    alert('Borrando usuario...');
+    id=[];
+    console.log('Borrando usuario...' + event.currentTarget.id);
+    id = event.currentTarget.id.split("-");
+    
+    //id [1]=Math.floor(id[1]); En caso de tener que pasarlo como number
+    //console.log (typeof(id[1]));
+
+    document.getElementById('DeleteUserModal').style.display='block';
+    let CloseDelUserModal = (event) =>
+    {
+        document.getElementById('DeleteUserModal').style.display='none';
+    }
+    let SendDelUser = (event) =>
+    {    
+        let DelUserFormData ={};
+        DelUserFormData.id = id[1];
+        DelUserFormData.username = document.getElementById('userdel').value;
+        DelUserFormData.password = document.getElementById('passdel').value;
+     
+        DelUserFormDataJSON = JSON.stringify(DelUserFormData);
+        console.log(DelUserFormDataJSON);
+        DeleteUserRequest();
+        CloseDelUserModal();
+    }
+    document.getElementById('DeleteUserModalExit').addEventListener('click', CloseDelUserModal );
+    document.getElementById('DelUserSend').addEventListener('click', SendDelUser);
+}
+
+let CreateUserRequest = (event) =>
+{
+    let connection = new XMLHttpRequest();
+
+    connection.open('POST', '../Backend/user/new.php');    
+    connection.addEventListener('loadend', processUsersResponse );
+    connection.send(NewUserFormDataJSON);
+
+}
+
+let onNewUserButtonClick = (event) =>
+{
+    document.getElementById('NewUserModal').style.display='block';
+    let CloseNewUserModal = (event) =>
+    {
+        document.getElementById('NewUserModal').style.display='none';
+    }
+    let SendNewUser = (event) =>
+    {
+        let NewUserFormData ={};
+        NewUserFormData.username = document.getElementById('username').value;
+        NewUserFormData.password = document.getElementById('pass').value;
+        console.log(NewUserFormData);
+        NewUserFormDataJSON = JSON.stringify(NewUserFormData);
+        console.log(NewUserFormDataJSON);
+        CreateUserRequest();
+        CloseNewUserModal();
+    }
+    document.getElementById('NewUserModalExit').addEventListener('click', CloseNewUserModal );
+    document.getElementById('NewUserSend').addEventListener('click', SendNewUser);
 }
 
 let processUsersResponse = ( event ) =>
 {
+
     if ( event.currentTarget.status == 200 )
     {
         //1
-        let serverResponse = event.currentTarget.responseText;
-        data = JSON.parse(serverResponse);
+        let serverResponse = event.currentTarget.responseText; //event.currentTarget trae el elemento que generó el evento, en este caso el objeto de la conexion.
+                                                               //event.currentTarget.responseText trae la respuesta del servidor en formato texto (JSON en este caso).
+        data = JSON.parse(serverResponse);//Desserealiza la respuesta del servidor(JSON-->Array en este caso) y la asigna a la vble data.
 
         //2
         let userTable = document.getElementById("userTable");
         userTable.innerHTML = showUserTable( data );
 
         //3
-        for( let row=1; row<data.length; row++)
+        document.getElementById('NewUserButton').addEventListener('click', onNewUserButtonClick);
+        for( let i=1; i<data.length; i++)
         {
-            document.getElementById('editUser-'+data[row][0] ).addEventListener('click', onEditUserButtonClick );
-            document.getElementById('deleteUser-'+data[row][0] ).addEventListener('click', onDeleteUserButtonClick );
+            document.getElementById('EditUserButton-'+data[i][0] ).addEventListener('click', onEditUserButtonClick );
+            document.getElementById('DelUserButton-'+data[i][0] ).addEventListener('click', onDeleteUserButtonClick );
         }
     }
     else
@@ -112,54 +150,37 @@ let requestUsers = ( event ) =>
 {
     let connection = new XMLHttpRequest();
 
-    connection.open('GET', './backend/server.php');
-
+    connection.open('GET', '../Backend/user/read.php');    
     connection.addEventListener('loadend', processUsersResponse );
     connection.send();
 }
-/*
-let ShowModal = (event) =>
-{
-    console.log("Ingresa a la función");
-    let modal = document.getElementById("ModalCont");
-    modal.innerHTML += `<h1>Prueba Modal${event}}</h1>`;
-    modal.innerHTML += `<div class="w3-modal-content">
-      <div class="w3-container">
-        <span onclick="document.getElementById("ModalCont").style.display='none'"
-        class="w3-button w3-display-topright">&times;</span>
-        <p>Some text in the Modal..</p>
-        <p>Some text in the Modal..</p>
-      </div>`
-}
-*/
+
 let initializeView = () =>
 {
     /*1. Realizar las consultas y/o peticiones al servidor que sean necesarias
     Para poder presentar la informaciÃ²n inicial en la vista.*/
-    //requestUsers();
-    let response = 
-    [
-        ["id", "username", "password"],
-        [1, "root", "123456"],
-        [2, "juan", "re78934"],
-        [3, "lorena", "******"],
-        [4, "ariel", "aka8932j"],
-        [5, "florencia", "jhsqnf6"],
-        [6, "nicolas", "99os9si"]
-    ];
-    document.getElementById("userTable").innerHTML=showUserTable(response);
-    showUserTable(response);
-    /*2. Invocar las funciones que dibujan la interfaz grÃ¡fica correspondiente a cada regiÃ³n*/
+    requestUsers();
    
-    /*3. Preparar toda la asociaciÃ³n de eventos de interacciÃ³n entre el usuario y la interfaz*/
+    //2. Invocar las funciones que dibujan la interfaz grÃ¡fica correspondiente a cada regiÃ³n/
+   
+    //3. Preparar toda la asociaciÃ³n de eventos de interacciÃ³n entre el usuario y la interfaz/
 
 }
-/*
-let ExpectClick = () =>
-{
-    let editButton1 = document.getElementById("editUser-1");
-    editButton1.addEventListener("click", ShowModal);
-}*/
 window.addEventListener('DOMContentLoaded', initializeView );
-//window.addEventListener('DOMContentLoaded', ExpectClick );
 
+/*
+El Siguiente comando permite visualizar la ventana modal según id:
+    document.getElementById('NewUserModal').style.display='block';
+    document.getElementById('EditUserModal').style.display='block';
+    document.getElementById('DeleteUserModal').style.display='block';
+    
+El Siguiente comando permite ocultar la ventana modal según id:
+    document.getElementById('NewUserModal').style.display='none';
+    document.getElementById('EditUserModal').style.display='none';
+    document.getElementById('DeleteUserModal').style.display='none';
+
+El Siguiente comando permite ocultar la ventana modal con el x según id:
+    document.getElementById('NewUserModalExit').style.display='none';
+    document.getElementById('EditUserModalExit').style.display='none';
+    document.getElementById('DeleteUserModalExit').style.display='none';
+*/
