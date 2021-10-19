@@ -54,12 +54,21 @@ let EditUserRequest = (event) =>
 
 let onEditUserButtonClick = (event) =>
 {
-    id=[];
+    id={};
     console.log('Iniciando edición del usuario...'+ event.currentTarget.id);
     id = event.currentTarget.id.split("-");
     
+    //id = event.currentTarget.id.split("-");
+
+    id.id= event.currentTarget.parentElement.parentElement.childNodes[0].innerText;
+    id.user= event.currentTarget.parentElement.parentElement.childNodes[1].innerText;
+    id.pass= event.currentTarget.parentElement.parentElement.childNodes[2].innerText;
+ 
+    console.log(id.id+ '-'+ id.user +'-'+ id.pass + ' del tipo ' + typeof(id));
     //id [1]=Math.floor(id[1]); En caso de tener que pasarlo como number
     //console.log (typeof(id[1]));
+    document.getElementById('useredit').value = id.user;
+    document.getElementById('passedit').value = id.pass;
 
     document.getElementById('EditUserModal').style.display='block';
     let CloseEditUserModal = (event) =>
@@ -94,14 +103,21 @@ let DeleteUserRequest = (event) =>
 
 let onDeleteUserButtonClick = (event) =>
 {
-    id=[];
-    console.log('Borrando usuario...' + event.currentTarget.id);
-    id = event.currentTarget.id.split("-");
+    id={};
     
-    //id [1]=Math.floor(id[1]); En caso de tener que pasarlo como number
-    //console.log (typeof(id[1]));
+    console.log('Borrando usuario...' + event.currentTarget.id);
+    //id = event.currentTarget.id.split("-");
+
+    id.id= event.currentTarget.parentElement.parentElement.childNodes[0].innerText;
+    id.user= event.currentTarget.parentElement.parentElement.childNodes[1].innerText;
+    id.pass= event.currentTarget.parentElement.parentElement.childNodes[2].innerText;
+ 
+    console.log(id.id+ '-'+ id.user +'-'+ id.pass + ' del tipo ' + typeof(id));
+   
+    document.getElementById('DeleteContentModal').innerHTML = `SE VA A BORRAR EL USUARIO: ${id.user} CON ID: ${id.id}`;
 
     document.getElementById('DeleteUserModal').style.display='block';
+    
     let CloseDelUserModal = (event) =>
     {
         document.getElementById('DeleteUserModal').style.display='none';
@@ -109,9 +125,9 @@ let onDeleteUserButtonClick = (event) =>
     let SendDelUser = (event) =>
     {    
         let DelUserFormData ={};
-        DelUserFormData.id = id[1];
-        DelUserFormData.username = document.getElementById('userdel').value;
-        DelUserFormData.password = document.getElementById('passdel').value;
+        DelUserFormData.id = id.id;
+        DelUserFormData.username = id.user;
+        DelUserFormData.password = id.pass;
      
         DelUserFormDataJSON = JSON.stringify(DelUserFormData);
         console.log(DelUserFormDataJSON);
