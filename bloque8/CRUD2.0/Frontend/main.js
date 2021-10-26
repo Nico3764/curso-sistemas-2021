@@ -40,7 +40,7 @@ let remove = (data) =>
 
 let HTMLUserTable = ( data ) =>
 {
-    let HTMLCode = `<table class="w3-margin-top w3-margin-left">`
+    let HTMLCode = `<table class="w3-table-all w3-centered" style='width:40%'>`
 
     for ( let row=0; row<data.length; row++)
     {
@@ -53,13 +53,13 @@ let HTMLUserTable = ( data ) =>
 
         if ( row == 0 )
         {
-            HTMLCode += `<td>actions</td>`;
+            HTMLCode += `<td class='w3-center'>actions</td>`;
         }
         else
         {
             HTMLCode += `<td>
-                        <button name="edit">Editar</button>
-                        <button name="remove">Borrar</button>
+                        <button name="edit" class="w3-button w3-amber w3-round-large">Editar</button>
+                        <button name="remove" class="w3-button w3-2021-mint w3-round-large">Borrar</button>
                     </td>`;
         }
 
@@ -67,7 +67,7 @@ let HTMLUserTable = ( data ) =>
     }                       
                         
     HTMLCode += `</table>`;
-    HTMLCode += `<button name="create" class="w3-margin-top w3-margin-left">new user</button>`;
+    HTMLCode += `<button name="create" class="w3-button w3-2020-flame-scarlet w3-round-large w3-margin-top w3-margin-left">new user</button>`;
     return HTMLCode;
 }
 
@@ -147,7 +147,9 @@ let HTMLRemoveFormUserDialog = (id) =>
     {
         let data =
         {
-            id: element.childNodes[0].innerText
+            id: element.childNodes[0].innerText,
+            username: element.childNodes[1].innerText,
+            password: element.childNodes[2].innerText
         }
 
         return data;
@@ -166,7 +168,7 @@ let showModalDialog = ( HTMLDialogFormElement, confirmAction, cancelAction ) =>
     let modalElement = document.getElementById('modalDialogView');
    
     modalElement.innerHTML =
-    `<div class="w3-modal-content w3-animate-top">
+    `<div class="w3-modal-content w3-animate-zoom">
         <header class="w3-container w3-teal"> 
         <span id="cancel" class="w3-button w3-display-topright">&times;</span>
     </header>
@@ -178,7 +180,10 @@ let showModalDialog = ( HTMLDialogFormElement, confirmAction, cancelAction ) =>
     let confirmButtonClick = (event) =>
     {
         if ( confirmAction != undefined || confirmAction != null )
+        {
+            console.log(HTMLDialogFormElement.formData())
             confirmAction(HTMLDialogFormElement.formData());
+        }
         
         modalElement.style.display = 'none';
         modalElement.removeEventListener('click',confirmButtonClick);
@@ -188,7 +193,9 @@ let showModalDialog = ( HTMLDialogFormElement, confirmAction, cancelAction ) =>
     let cancelButtonClick = (event) =>
     {
         if ( cancelAction != undefined || cancelAction != null )
+        {
             cancelAction(HTMLDialogFormElement.formData());
+        }
                 
         modalElement.style.display = 'none';
         modalElement.removeEventListener('click',confirmButtonClick);
@@ -213,19 +220,19 @@ let processActionButtonClickEvents=(event) =>
         case 'create':
             let createDialog = HTMLCreateFormUserDialog(); //la función HTMLCreateFormUserDialog() devuelve un objet con el html de la ventana modal y los valores de user y pass.
             console.log('create request action for new server id');
-            showModalDialog(createDialog, create, null ); //llama a la función que muestra/oculta la ventana modal.
+            showModalDialog(createDialog, create, null ); //llama a la función que muestra/oculta la ventana modal y le envía por parametros la vble createDialog y la función create.
         break;
 
         case 'edit':
             let editDialog = HTMLEditFormUserDialog(elementId);
             console.log('edit request action for data id='+elementId);
-            showModalDialog(editDialog, edit, null );
+            showModalDialog(editDialog, edit, null ); //llama a la función que muestra/oculta la ventana modal y le envía por parametros la vble createDialog y la función edit.
         break;
 
         case 'remove':
             let removeDialog = HTMLRemoveFormUserDialog(elementId);
             console.log('remove request action for data id='+elementId);
-            showModalDialog(removeDialog, remove, null );
+            showModalDialog(removeDialog, remove, null ); //llama a la función que muestra/oculta la ventana modal y le envía por parametros la vble createDialog y la función remove.
         break;
 
         default:

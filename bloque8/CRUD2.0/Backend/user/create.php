@@ -1,17 +1,20 @@
 <?php
 
-$response = 
-[
-    ["id", "username", "password"],
-    [1, "root", "123456"],
-    [2, "juan", "re78934"],
-    [3, "lorena", "******"],
-    [4, "ariel", "aka8932j"],
-    [5, "florencia", "jhsqnf6"],
-    [6, "nicolas", "99os9si"],
-    [7, "new", "123454321"]
-];
+include_once( "database.php");
 
-echo json_encode($response);
+$json_body = file_get_contents('php://input');
+
+//Deserializar: JSON->FormatoPHP 
+//Transformamos texto JSON en objeto PHP para poder manipularlo con el lenguaje
+$object = json_decode($json_body);
+
+//Tomamos la información necesaria del objeto recibido
+$password = $object->password;
+$username = $object->username;
+
+$new_user = [7, $username, $password];
+array_push($_SESSION['data'], $new_user);
+
+echo json_encode($_SESSION['data']);
 
 ?>
