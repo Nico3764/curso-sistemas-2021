@@ -3,8 +3,9 @@
 //Ejecutando la conexión en un bloque protegido. En caso de falla X al conectar, se atrapa la excepción
 try
 {
-    $connection = new PDO('mysql: host=192.168.100.159:3306;dbname=crud','nico','1234');
+    $connection = new PDO('mysql: host=127.0.0.1:3306;dbname=crud','nico','1234');
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo json_encode('db-ok pero faltan los datos');
 
     
 
