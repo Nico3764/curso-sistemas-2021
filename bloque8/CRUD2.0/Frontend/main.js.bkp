@@ -42,13 +42,6 @@ let HTMLUserTable = ( data ) =>
 {
     let HTMLCode = `<table class="w3-table-all w3-centered" style='width:40%'>`
 
-
-    HTMLCode += `<tr>
-                        <td class='w3-center'>ID</td>
-                        <td class='w3-center'>USERNAME</td>
-                        <td class='w3-center'>PASSWORD</td>
-                        <td class='w3-center'>ACTIONS</td>
-                </tr>`
     for ( let row=0; row<data.length; row++)
     {
         HTMLCode += `<tr id='${data[row][0]}'>`;
@@ -58,10 +51,17 @@ let HTMLUserTable = ( data ) =>
             HTMLCode += `<td>${data[row][column]}</td>`;
         }
 
+        if ( row == 0 )
+        {
+            HTMLCode += `<td class='w3-center'>actions</td>`;
+        }
+        else
+        {
             HTMLCode += `<td>
                         <button name="edit" class="w3-button w3-amber w3-round-large">Editar</button>
                         <button name="remove" class="w3-button w3-2021-mint w3-round-large">Borrar</button>
                     </td>`;
+        }
 
         HTMLCode += `</tr>` ;                                   
     }                       
@@ -119,7 +119,6 @@ let HTMLEditFormUserDialog = (id) =>
     {
         let data =
         {
-            id: element.childNodes[0].innerText,
             username: document.getElementById('username').value,
             password: document.getElementById('password').value
         }
@@ -259,13 +258,13 @@ let processServerResponse = (event, name) =>
     if ( event.currentTarget.status == 200 )
     {
     
+        let serverResponse = event.currentTarget.responseText; //event.currentTarget trae el elemento que generó el evento, en este caso el objeto de la conexion.
+                                                               //event.currentTarget.responseText trae la respuesta del servidor en formato texto (JSON en este caso).
+        data = JSON.parse(serverResponse);//Desserealiza la respuesta del servidor(JSON-->Array en este caso) y la asigna a la vble data.
+
         switch (name)
         {
             case 'read':
-
-                let serverResponse = event.currentTarget.responseText; //event.currentTarget trae el elemento que generó el evento, en este caso el objeto de la conexion.
-                                                               //event.currentTarget.responseText trae la respuesta del servidor en formato texto (JSON en este caso).
-                data = JSON.parse(serverResponse);//Desserealiza la respuesta del servidor(JSON-->Array en este caso) y la asigna a la vble data.
                 UpdateView(data);
             break;
             case 'create':
