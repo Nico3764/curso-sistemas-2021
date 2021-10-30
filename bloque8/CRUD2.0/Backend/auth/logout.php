@@ -1,7 +1,6 @@
 <?php
 
-include_once( "../database.php" );
-include_once("../auth.php");
+include_once( "database.php" );
 
 try
 {
@@ -15,7 +14,7 @@ try
 }
 catch( PDOException $connectionException )
 {
-    $status = array( status=>'db-error (read.php)', description=>$connectionException->getMessage() );
+    $status = array( status=>'db-error (logout.php)', description=>$connectionException->getMessage() );
     echo json_encode($status);
     die();
 }

@@ -164,9 +164,41 @@ let HTMLRemoveFormUserDialog = (id) =>
 
     return dialog;
 }
+let HTMLLoginFormUserDialog = () =>
+{
+    let HTMLCode =
+        ` <div class="w3-container w3-card-4 w3-light-grey w3-padding-16">
+            <h2 class="w3-center" style='font-weight: bold'>LOGIN FOR USER & PASSWORD</h2>
+            <label>Name*</label><br>
+            <input id ='username' class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter username"><br>
+            <label>Password*</label><br>
+            <input id ='password' class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter your password"><br>
+        `;
+
+    let getFormData = () =>
+    {
+        let data =
+        {
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        }
+
+        return data;
+    }
+ 
+    let dialog =
+    {
+        HTMLDialogView: HTMLCode,
+        formData: getFormData
+    }
+
+    return dialog;
+}
+
 let showModalDialog = ( HTMLDialogFormElement, confirmAction, cancelAction ) =>
 {
     let modalElement = document.getElementById('modalDialogView');
+    console.log('el html del modal es: '+HTMLDialogFormElement.HTMLDialogView)
    
     modalElement.innerHTML =
     `<div class="w3-modal-content w3-animate-zoom">
@@ -292,6 +324,8 @@ let processServerResponse = (event, name) =>
 
 let start =() =>
 {
+    let loginDialog = HTMLLoginFormUserDialog();
+    showModalDialog( loginDialog, null, null );
     read();
 }
 
