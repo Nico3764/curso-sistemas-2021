@@ -59,7 +59,7 @@ let login = (data) =>
 
     let connection = new XMLHttpRequest();
 
-    connection.open('POST', './backend/auth/login.php');
+    connection.open('POST', '../Backend/auth/login.php');
 
     connection.addEventListener('loadend', event =>{ processServerResponse(event, 'login') } );
     connection.send( JSON.stringify(data) );
@@ -374,7 +374,7 @@ let welcome = () =>
 let start =() =>
 {
     let loginDialog = HTMLLoginFormUserDialog();
-    showModalDialog( loginDialog, null, null );
+    showModalDialog( loginDialog, login, null );
 }
 
 window.addEventListener('DOMContentLoaded', start );
