@@ -362,11 +362,17 @@ let processServerResponse = (event, name) =>
         alert("Hubo errores al procesar la solicitud.");
     }
 }
+let nobackbutton = () =>
+{
+   window.location.hash="no-back-button";
+   window.location.hash="Again-No-back-button"
+   window.onhashchange=function(){window.location.hash="no-back-button";}
+}
 
 let welcome = () =>
 {
     read();
-
+    nobackbutton();
     //Bloquear el botón atras (Código del DOM)
 }
 
