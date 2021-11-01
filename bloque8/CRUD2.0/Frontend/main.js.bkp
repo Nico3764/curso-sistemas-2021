@@ -1,15 +1,25 @@
-let read = () =>
+let auth =
 {
+    username: null,
+    password:null
+
+}
+
+let read = (data) =>
+{
+    data ={};
+    data.auth=auth;
     let connection = new XMLHttpRequest();
 
-    connection.open('GET', '../Backend/user/read.php');
+    connection.open('POST', '../Backend/user/read.php');
 
     connection.addEventListener('loadend', event =>{ processServerResponse(event, 'read') } );
-    connection.send();
+    connection.send(JSON.stringify(data));
 }
 
 let create = (data) =>
 {
+    data.auth = auth;
     let connection = new XMLHttpRequest();
 
     connection.open('POST', '../Backend/user/create.php');
@@ -20,6 +30,7 @@ let create = (data) =>
 
 let edit = ( data ) =>
 {
+    data.auth = auth;
     let connection = new XMLHttpRequest();
 
     connection.open('POST', '../Backend/user/edit.php');
@@ -30,11 +41,27 @@ let edit = ( data ) =>
 
 let remove = (data) =>
 {
+    data.auth = auth;
     let connection = new XMLHttpRequest();
 
     connection.open('POST', '../Backend/user/remove.php');
 
     connection.addEventListener('loadend', event =>{ processServerResponse(event, 'remove') } );
+    connection.send( JSON.stringify(data) );
+}
+
+let login = (data) =>
+{
+    auth.username = data.username;
+    auth.password = data.password;
+
+    data.auth = auth;
+
+    let connection = new XMLHttpRequest();
+
+    connection.open('POST', '../Backend/auth/login.php');
+
+    connection.addEventListener('loadend', event =>{ processServerResponse(event, 'login') } );
     connection.send( JSON.stringify(data) );
 }
 
@@ -170,9 +197,9 @@ let HTMLLoginFormUserDialog = () =>
         ` <div class="w3-container w3-card-4 w3-light-grey w3-padding-16">
             <h2 class="w3-center" style='font-weight: bold'>LOGIN FOR USER & PASSWORD</h2>
             <label>Name*</label><br>
-            <input id ='username' class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter username"><br>
+            <input id ='username' class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value=""><br>
             <label>Password*</label><br>
-            <input id ='password' class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter your password"><br>
+            <input id ='password' class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value=""><br>
         `;
 
     let getFormData = () =>
@@ -312,6 +339,20 @@ let processServerResponse = (event, name) =>
                 UpdateView(data);
                 read();
             break;
+            case 'login':
+            {
+                let serverResponse = event.currentTarget.responseText;
+                data = JSON.parse(serverResponse)       
+                
+                if ( data == true )
+                    welcome();
+                else
+                {
+                    alert('Usuario y/o contraseña inválida');
+                    let loginDialog = HTMLLoginFormUserDialog();
+                    showModalDialog( loginDialog, login, null );
+                }
+            };
 
             default:
         }
@@ -321,12 +362,25 @@ let processServerResponse = (event, name) =>
         alert("Hubo errores al procesar la solicitud.");
     }
 }
+let nobackbutton = () =>
+{
+   window.location.hash="no-back-button";
+   window.location.hash="Again-No-back-button"
+   window.onhashchange=function(){window.location.hash="no-back-button";}
+}
+
+let welcome = () =>
+{
+    read();
+    nobackbutton();
+    //Bloquear el botón atras (Código del DOM)
+}
+
 
 let start =() =>
 {
     let loginDialog = HTMLLoginFormUserDialog();
-    showModalDialog( loginDialog, null, null );
-    read();
+    showModalDialog( loginDialog, login, null );
 }
 
 window.addEventListener('DOMContentLoaded', start );

@@ -94,7 +94,14 @@ let HTMLUserTable = ( data ) =>
     }                       
                         
     HTMLCode += `</table>`;
-    HTMLCode += `<button name="create" class="w3-button w3-2020-flame-scarlet w3-round-large w3-margin-top w3-margin-left">new user</button>`;
+    HTMLCode += `<div class="w3-container" style="width:60%">
+                    <div class="w3-half">
+                        <button name="create" class="w3-button w3-2020-flame-scarlet w3-round-large w3-margin-top">NEW USER</button>
+                    </div>
+                    <div class="w3-half">
+                        <button name="logout" class="w3-button w3-2021-mint w3-round-large w3-margin-top">LOGOUT</button>
+                    </div>
+                 </div>`
     return HTMLCode;
 }
 
