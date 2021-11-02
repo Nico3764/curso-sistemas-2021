@@ -302,6 +302,10 @@ let processActionButtonClickEvents=(event) =>
             showModalDialog(removeDialog, remove, null ); //llama a la función que muestra/oculta la ventana modal y le envía por parametros la vble createDialog y la función remove.
         break;
 
+        case 'logout':
+            alert('logout request action');                       
+        break;
+
         default:
     }
 }

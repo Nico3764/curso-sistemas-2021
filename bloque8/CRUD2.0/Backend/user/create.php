@@ -19,7 +19,7 @@ try
 }
 catch( PDOException $connectionException )
 {
-    $status = array( status=>'db-error', description=>$connectionException->getMessage() );
+    $status = array( status=>'db-error (create.php', description=>$connectionException->getMessage() );
     echo json_encode($status);
     die();
 }
