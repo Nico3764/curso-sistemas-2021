@@ -303,7 +303,7 @@ let processActionButtonClickEvents=(event) =>
         break;
 
         case 'logout':
-            alert('logout request action'); 
+            alert('Logout request action'); 
             auth = {username: null, password:null};
             let viewElement = document.getElementById('userTable');
             viewElement.innerHTML = '';
