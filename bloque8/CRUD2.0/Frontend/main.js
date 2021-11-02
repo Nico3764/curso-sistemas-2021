@@ -303,7 +303,9 @@ let processActionButtonClickEvents=(event) =>
         break;
 
         case 'logout':
-            alert('logout request action');                       
+            alert('logout request action'); 
+            auth = {username: null, password:null};
+            read();                    }                      
         break;
 
         default:
