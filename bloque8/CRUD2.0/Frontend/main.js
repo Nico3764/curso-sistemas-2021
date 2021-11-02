@@ -108,12 +108,16 @@ let HTMLUserTable = ( data ) =>
 let HTMLCreateFormUserDialog = () =>
 {
     let HTMLCode =
-        ` <div class="w3-container w3-card-4 w3-light-grey w3-padding-16">
+        ` <div class="w3-container w3-card-4 w3-light-grey w3-padding-16">           
             <h2 class="w3-center" style='font-weight: bold'>NUEVO USUARIO</h2>
-            <label>Name*</label><br>
-            <input id ='username' class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter new name"><br>
-            <label>Password*</label><br>
-            <input id ='password' class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter new password"><br>
+            <div class="w3-half">
+                <label>Name*</label><br>
+                <input id ='username' class="w3-input w3-border w3-round-large w3-text-grey" type="text" name="Name" value="enter new name"><br>
+            </div>
+            <div class="w3-half">
+                <label>Password*</label><br>
+                <input id ='password' class="w3-input w3-border w3-round-large w3-text-grey" type="password" name="pass" value="enter new password"><br>
+            </div>
         `;
 
     let getFormData = () =>
