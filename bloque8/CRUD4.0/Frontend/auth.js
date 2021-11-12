@@ -1,4 +1,3 @@
-let aux ={};
 let auth = 
 {
 			//Peticiones al servidor
@@ -15,7 +14,7 @@ let auth =
 			        connection.open('POST', '../Backend/auth/login.php');
 
 			        connection.addEventListener('loadend', () => {
-			        	status=connection.responseText;
+			        	status= JSON.parse(connection.responseText);
 			        	on_login(status)} );
 			        
 			        connection.send( JSON.stringify(data) );
@@ -25,21 +24,20 @@ let auth =
 				{
 					let connection = new XMLHttpRequest();
 
-			        connection.open('POST', './backend/auth/logout.php');
+			        connection.open('POST', '../Backend/auth/logout.php');
 
-			        connection.addEventListener('loadend', on_logout );
+			        connection.addEventListener('loadend', () => {
+			        	status= JSON.parse(connection.responseText);
+			        	on_logout(status)} );
+
 			        connection.send( JSON.stringify(data) );
 				},
 
 				getAuthData: () =>
 				{
-					return {username: 'test', password: 1234};
-				},
-
-				getUsername: () =>
-				{
-
-				}
+					let session= sessionStorage.getItem('crud-session-key');
+					return session;
+				}				
 }
 
 
@@ -50,7 +48,6 @@ let authView =
 		let HTMLcode = `
 			    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 			      <div class="w3-center"><br>
-			        <span id ="closeLoginButton"class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">×</span>
 			        <img src="./img/img_avatar4.png" alt="Avatar" style="width:40%" class="w3-circle w3-margin-top">
 			      </div>
 			      	<div class='w3-padding'>
