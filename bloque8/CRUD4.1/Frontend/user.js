@@ -19,6 +19,7 @@ let userModule =
     create : (data) =>
     {
         data.auth=auth.getAuthData();
+        data.hash= auth.hashCode(data.username+data.password);
         let connection = new XMLHttpRequest();
 
         connection.open('POST', '../Backend/user/create.php');
@@ -30,6 +31,7 @@ let userModule =
     edit : ( data ) =>
     {
         data.auth=auth.getAuthData();
+        data.hash= auth.hashCode(data.username+data.password);
         let connection = new XMLHttpRequest();
 
         connection.open('POST', '../Backend/user/edit.php');
@@ -59,6 +61,7 @@ let userModule =
                             <td class='w3-center'>USERNAME</td>
                             <td class='w3-center'>PASSWORD</td>
                             <td class='w3-center'>SESSION-Key</td>
+                            <td class='w3-center'>Hash-Key</td>
                             <td class='w3-center'>ACTIONS</td>
                     </tr>`
         for ( let row=0; row<data.length; row++)

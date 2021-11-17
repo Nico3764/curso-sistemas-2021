@@ -1,6 +1,3 @@
-     
-
-
 
 let auth = 
 {
@@ -9,9 +6,9 @@ let auth =
 				{
 					let data =
 					{
-						username: user,
-						password: password
+						hash: auth.hashCode(user+password)
 					};
+					console.log('en el login se envía: ' + data.hash);
 
 					let connection = new XMLHttpRequest();
 					let status = false;	
@@ -41,7 +38,13 @@ let auth =
 				{
 					let session= sessionStorage.getItem('crud-session-key');
 					return session;
-				}				
+				},
+				hashCode : (s) =>
+				{
+					return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);
+					return a&a},0);      					
+				} 			
+
 }
 
 
